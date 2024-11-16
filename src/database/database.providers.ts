@@ -9,7 +9,7 @@ export const databaseProvider=[
             const database= new DataSource({
                 type:'postgres',
                 host:config.get('HOST'),
-                port: +config.get('PORT_DB'),
+                port: +config.get('PORT'),
                 username: config.get('USERNAME'),
                 password: config.get('PASSWORD'),
                 database: config.get('DATABASE')
