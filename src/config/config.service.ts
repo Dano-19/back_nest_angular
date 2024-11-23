@@ -6,12 +6,16 @@ import {parse} from "dotenv"
 export class ConfigService {
     private readonly envConfig: {[key:string]:string}
     constructor(){
+        const env=process.env.NODE_ENV || 'development'
+        const envFilePath=`${__dirname}/../../.env${env}`
+        const existsPath = fs.existsSync(envFilePath)
+        //console.log("*********",envFilePath)//
         const isDevelopmentEnv = process.env.NODE_ENV !== 'production'
         if(isDevelopmentEnv){
             const envFilePath = __dirname +'/../../.env.development'
             const existsPath = fs.existsSync(envFilePath)
             if(!existsPath){
-                console.log('.envdevelopment no existe DEVELOPMENT')
+                console.log('.env.development no existe DEVELOPMENT')
                 process.exit(0)
             }
             this.envConfig = parse(fs.readFileSync(envFilePath))
