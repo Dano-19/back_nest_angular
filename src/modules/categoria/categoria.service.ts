@@ -15,23 +15,19 @@ export class CategoriaService {
     return await this.categoriaRepository.save(categoria)
   }
 
-  async findALL(){
-    return await this.categoriaRepository.find();
+  async findALL() {
+    return await this.categoriaRepository.find({order:{id:'asc'}});
   }
 
-  findAll() {
-    return `This action returns all categoria`;
+  async findOne(id: number) {
+    //return `This action returns a #${id} categoria`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} categoria`;
+  async update(id: number, updateCategoriaDto: UpdateCategoriaDto) {
+    return await this.categoriaRepository.update(id,updateCategoriaDto);
   }
 
-  update(id: number, updateCategoriaDto: UpdateCategoriaDto) {
-    return `This action updates a #${id} categoria`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} categoria`;
+  async remove(id: number) {
+    return await this.categoriaRepository.delete(id);
   }
 }
